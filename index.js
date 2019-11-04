@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000
@@ -15,6 +16,9 @@ mongoose.connect(process.env.DB_URL, dbOptions, (err) => {
     console.log('connected ✅')
   }
 })
+
+// dev
+app.use(morgan('dev'));
 
 // cors
 require('./middleware/cors-middleware')(app);
